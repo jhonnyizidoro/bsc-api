@@ -13,4 +13,15 @@ export default class ProspectController {
 		await prospect.save()
 		return res.status(201).json(prospect)
 	}
+
+	static async update(req: Request, res: Response): Promise<Response> {
+		const { id } = req.params
+		const { name } = req.body
+
+		const prospect = await Prospect.findOneOrFail({ id })
+		prospect.name = name
+
+		await Prospect.save(prospect)
+		return res.status(201).json(prospect)
+	}
 }

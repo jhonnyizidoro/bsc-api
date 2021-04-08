@@ -22,15 +22,19 @@ router.post('/companies', validateToken, CompanyController.store)
 
 router.get('/prospects', validateToken, ProspectController.index)
 router.post('/prospects', validateToken, ProspectController.store)
+router.put('/prospects/:id', validateToken, ProspectController.update)
 
 router.get('/goals', validateToken, GoalController.index)
 router.post('/goals', validateToken, GoalController.store)
+router.put('/goals/:id', validateToken, GoalController.update)
 
 router.get('/indicators', validateToken, IndicatorController.index)
 router.post('/indicators', validateToken, IndicatorController.store)
 
 router.get('/signatures', validateToken, SignatureController.index)
 router.post('/signatures', validateToken, SignatureController.store)
+router.get('/signatures/:id', validateToken, SignatureController.show)
+router.put('/signatures/:id', validateToken, SignatureController.update)
 
 router.get('/signature-values', validateToken, SignatureValueController.index)
 router.post('/signature-values', validateToken, SignatureValueController.store)

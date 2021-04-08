@@ -8,8 +8,14 @@ export default class SignatureValue extends Model {
 	@Column('float')
 	value: number
 
-	@Column('date')
-	date: Date
+	@Column()
+	day: string
+
+	@Column()
+	month: string
+
+	@Column()
+	year: string
 
 	@ManyToOne(() => Signature)
 	signature: Signature

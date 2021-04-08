@@ -13,4 +13,22 @@ export default class SignatureController {
 		await signature.save()
 		return res.status(201).json(signature)
 	}
+
+	static async show(req: Request, res: Response): Promise<Response> {
+		const { id } = req.params
+		const signature = await Signature.findOneOrFail({ id }, { relations: ['values'] })
+		return res.status(200).json(signature)
+	}
+
+	static async update(req: Request, res: Response): Promise<Response> {
+		const { id } = req.params
+		const { name, frequency } = req.body
+
+		const signature = await Signature.findOneOrFail({ id })
+		signature.name = name
+		signature.frequency = frequency
+
+		await Signature.save(signature)
+		return res.status(201).json(signature)
+	}
 }

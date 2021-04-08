@@ -20,4 +20,19 @@ export default class GoalController {
 		await goal.save()
 		return res.status(201).json(goal)
 	}
+
+	static async update(req: Request, res: Response): Promise<Response> {
+		const { id } = req.params
+		const { name, prospectId, predecessorId } = req.body
+
+		const goal = await Goal.findOneOrFail({ id })
+		goal.name = name
+		goal.prospect = await Prospect.findOneOrFail({ id: prospectId })
+		if (predecessorId) {
+			goal.predecessor = await Goal.findOneOrFail({ id: predecessorId })
+		}
+
+		await Goal.save(goal)
+		return res.status(201).json(goal)
+	}
 }
