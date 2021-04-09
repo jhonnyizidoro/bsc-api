@@ -13,4 +13,18 @@ export default class CompanyController {
 		await company.save()
 		return res.status(201).json(company)
 	}
+
+	static async update(req: Request, res: Response): Promise<Response> {
+		const { id } = req.params
+		const { name, mission, vision, values } = req.body
+
+		const company = await Company.findOneOrFail({ id })
+		company.name = name
+		company.mission = mission
+		company.vision = vision
+		company.values = values
+
+		await Company.save(company)
+		return res.status(201).json(company)
+	}
 }

@@ -1,10 +1,12 @@
 import { NextFunction, Request, Response } from 'express'
 import { verify } from 'jsonwebtoken'
 
+import User from '@/models/User'
+
 interface TokenPayload {
-	id: string
 	iat: number
 	exp: number
+	user: User
 }
 
 export const validateToken = (
@@ -21,8 +23,8 @@ export const validateToken = (
 	const token = authorization.replace('Bearer', '').trim()
 
 	try {
-		const { id } = verify(token, 'TEST') as TokenPayload
-		req.userId = id
+		const session = verify(token, 'TEST') as TokenPayload
+		req.user = session.user
 		return next()
 	} catch {
 		return res.sendStatus(401)

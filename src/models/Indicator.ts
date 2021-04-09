@@ -40,7 +40,7 @@ export default class Indicator extends Model {
 	@Column({ type: 'enum', enum: IndicatorFrequency })
 	frequency: string
 
-	@Column()
+	@Column({ nullable: true })
 	formula: string
 
 	@ManyToOne(() => Goal)

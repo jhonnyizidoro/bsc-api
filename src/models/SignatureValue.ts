@@ -9,13 +9,13 @@ export default class SignatureValue extends Model {
 	value: number
 
 	@Column()
-	day: string
+	day: number
 
 	@Column()
-	month: string
+	month: number
 
 	@Column()
-	year: string
+	year: number
 
 	@ManyToOne(() => Signature)
 	signature: Signature
