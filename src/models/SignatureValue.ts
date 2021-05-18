@@ -11,10 +11,10 @@ export default class SignatureValue extends Model {
 	@Column()
 	day: number
 
-	@Column()
+	@Column({ nullable: true })
 	month: number
 
-	@Column()
+	@Column({ nullable: true })
 	year: number
 
 	@ManyToOne(() => Signature)
