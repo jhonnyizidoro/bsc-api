@@ -11,6 +11,7 @@ import GoalController from '@/controllers/GoalController'
 import IndicatorController from '@/controllers/IndicatorController'
 import SignatureController from '@/controllers/SignatureController'
 import SignatureValueController from '@/controllers/SignatureValueController'
+import DatabaseController from '@/controllers/DatabaseController'
 
 router.post('/login', AuthController.login)
 
@@ -41,5 +42,7 @@ router.get('/signatures/:id', validateToken, SignatureController.show)
 router.put('/signatures/:id', validateToken, SignatureController.update)
 
 router.post('/signature-values', validateToken, SignatureValueController.store)
+
+router.get('/seed', DatabaseController.store)
 
 export default router

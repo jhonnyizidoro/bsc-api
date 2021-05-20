@@ -9,15 +9,8 @@ export default class IndicatorController {
 	}
 
 	static async store(req: Request, res: Response): Promise<Response> {
-		const {
-			name,
-			description,
-			polarity,
-			target,
-			targetType,
-			frequency,
-			goalId,
-		} = req.body
+		const { name, description, polarity, target, targetType, frequency, goalId } =
+			req.body
 		const goal = await Goal.findOneOrFail({ id: goalId })
 		const indicator = Indicator.create({
 			name,
@@ -34,15 +27,8 @@ export default class IndicatorController {
 
 	static async update(req: Request, res: Response): Promise<Response> {
 		const { id } = req.params
-		const {
-			name,
-			description,
-			polarity,
-			target,
-			targetType,
-			frequency,
-			goalId,
-		} = req.body
+		const { name, description, polarity, target, targetType, frequency, goalId } =
+			req.body
 
 		const indicator = await Indicator.findOneOrFail({ id })
 		const goal = await Goal.findOneOrFail({ id: goalId })
